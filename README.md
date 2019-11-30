@@ -14,6 +14,8 @@ I calculated put call parity using the price of the bitcoin perpetual as the spo
 
 This program searches through every live trading option, and will list options that don't follow the theoretical law, as well as the profit after transaction fees are taken into account.
 
+First install the dependencies with `npm install`.
+
 Run it with `node live-watch.js` and it will continually list out the most profitable arbitrage trades, along with the profits.
 
 I was using it to create logs. So the output is a object with a timestamp, the profit due to the trade, the name of the option involved in the trade, and whether the trade consists of buying a call, selling a put, and shorting the perpetual, or selling a call, buying a put, and going long on the perpetual.
