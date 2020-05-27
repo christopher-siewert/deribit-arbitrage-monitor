@@ -29,5 +29,11 @@ test('int array, above max, no cmp', () => {
 test('Order array', () => {
   let A = [new Order(100, 1), new Order(200, 1), new Order(300, 1), new Order(400, 1)]
   let cmp = (order, target) => order.price - target
-  expect(binarySearch(A, 250)).toBe(2);
+  expect(binarySearch(A, 250, cmp)).toBe(2);
+});
+
+test('Order array, high to low', () => {
+  let A = [new Order(500, 1), new Order(400, 1), new Order(300, 1), new Order(200, 1)]
+  let cmp = (order, target) => target - order.price
+  expect(binarySearch(A, 450, cmp)).toBe(1);
 });

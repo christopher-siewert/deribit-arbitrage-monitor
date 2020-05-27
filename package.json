@@ -4,7 +4,7 @@
   "description": "This program tracks the Deribit bitcoin derivatives exchange, looking for arbitrage profits",
   "main": "live-watch.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "jest"
   },
   "repository": {
     "type": "git",
@@ -18,10 +18,9 @@
   "homepage": "https://github.com/christopher-siewert/deribit-arbitrage-monitor#readme",
   "dependencies": {
     "big.js": "^5.2.2",
-    "ccxt": "^1.28.79",
     "ws": "^7.0.1"
   },
   "devDependencies": {
-    "jest": "^24.8.0"
+    "jest": "^24.9.0"
   }
 }
