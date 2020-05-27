@@ -7,7 +7,7 @@ many digits to round to (2 for dollars, 8 for bitcoins)
 Orders are in format [[price, amount][price, amount]], with best order first
 Does not change manipulate orders object, safe to pass objects in
 */
-module.exports = function priceSlippage(amount, orders, decimals) {
+function priceSlippage(amount, orders, decimals) {
   // Error check for zero amount
   if (amount === 0) return 0;
   // Error check for undefined orders
@@ -46,3 +46,5 @@ module.exports = function priceSlippage(amount, orders, decimals) {
   }
   return money
 }
+
+module.exports = priceSlippage

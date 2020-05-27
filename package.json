@@ -18,6 +18,7 @@
   "homepage": "https://github.com/christopher-siewert/deribit-arbitrage-monitor#readme",
   "dependencies": {
     "big.js": "^5.2.2",
+    "ccxt": "^1.28.79",
     "ws": "^7.0.1"
   },
   "devDependencies": {

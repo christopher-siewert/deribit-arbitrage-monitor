@@ -10,7 +10,7 @@ Amount is in bitcoins, buyCall is a bool.
 It determines whether you buy a call, sell a put, and sell a future
 or sell a call, buy a put, and buy a future.
 */
-module.exports = function optionArbProfit(future, call, put, strike, index, amount, buyCall) {
+function optionArbProfit(future, call, put, strike, index, amount, buyCall) {
   // Error checks on amount
   if (!amount) throw new Error("Undefined amount");
   amount = Big(amount);
@@ -77,3 +77,5 @@ module.exports = function optionArbProfit(future, call, put, strike, index, amou
 
   return profit
 }
+
+module.exports = optionArbProfit
