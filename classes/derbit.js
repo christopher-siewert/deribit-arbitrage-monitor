@@ -1,6 +1,0 @@
-class Deribit {
-  constructor() {
-
-  }
-  
-}
