@@ -52,6 +52,40 @@ class Market {
   asset_list() {
     return Object.keys(this)
   }
+  get_expirations() {
+    const expirations = new Set()
+    for (const asset of Object.values(this)) {
+      expirations.add(asset.expiration_timestamp)
+    }
+    return expirations
+  }
+  get_same_expiration() {
+    const sets = {}
+    for (const asset of Object.values(this)) {
+      if (!sets[asset.expiration_timestamp]) {
+        sets[asset.expiration_timestamp] = {'future': [], 'option':[]}
+      }
+      sets[asset.expiration_timestamp][asset.kind].push(asset.instrument_name)
+    }
+    for (const [key, value] of Object.entries(sets)) {
+      if (!value.future.length || !value.option.length) {
+        delete sets[key]
+      }
+    }
+    for (const [key, value] of Object.entries(sets)) {
+      const puts = []
+      const calls = []
+      for (const option of value.option) {
+        if (option.endsWith('P')) {
+          puts.push(option)
+        } else {
+          calls.push(option)
+        }
+      }
+      sets[key].option = {calls, puts}
+    }
+    return sets
+  }
   update({instrument_name, bids, asks}) {
     for (let bid of bids) {
       this[instrument_name].book.modify_order(true, bid)
