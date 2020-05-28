@@ -59,13 +59,13 @@ class Market {
     }
     return expirations
   }
-  get_same_expiration() {
+  get_sorted_assets() {
     const sets = {}
     for (const asset of Object.values(this)) {
       if (!sets[asset.expiration_timestamp]) {
         sets[asset.expiration_timestamp] = {'future': [], 'option':[]}
       }
-      sets[asset.expiration_timestamp][asset.kind].push(asset.instrument_name)
+      sets[asset.expiration_timestamp][asset.kind].push(asset)
     }
     for (const [key, value] of Object.entries(sets)) {
       if (!value.future.length || !value.option.length) {
@@ -73,16 +73,15 @@ class Market {
       }
     }
     for (const [key, value] of Object.entries(sets)) {
-      const puts = []
-      const calls = []
+      value.future = value.future[0]
+      const strikes = {}
       for (const option of value.option) {
-        if (option.endsWith('P')) {
-          puts.push(option)
-        } else {
-          calls.push(option)
+        if (!strikes[option.strike]) {
+          strikes[option.strike] = {}
         }
+        strikes[option.strike][option.option_type] = option
       }
-      sets[key].option = {calls, puts}
+      value.option = strikes
     }
     return sets
   }
