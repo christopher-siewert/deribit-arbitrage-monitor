@@ -19,20 +19,20 @@ const wait = n => new Promise(r => setTimeout(r, n));
       "expired": false,
     }
   );
+  console.log(instruments)
+  // let market = new Market(instruments.result);
 
-  let market = new Market(instruments.result);
-
-  subscribes = []
-  for (asset of market.asset_list()) {
-    subscribes.push(deribit.subscribe(
-      'public',
-      `book.${asset}.100ms`
-    ))
-  }
-  await Promise.all(subscribes);
-  deribit.on('subscription', (payload) => market.update(payload.data));
-  await wait(1000);
-  printArbs(market);
+  // subscribes = []
+  // for (asset of market.asset_list()) {
+  //   subscribes.push(deribit.subscribe(
+  //     'public',
+  //     `book.${asset}.100ms`
+  //   ))
+  // }
+  // await Promise.all(subscribes);
+  // deribit.on('subscription', (payload) => market.update(payload.data));
+  // await wait(1000);
+  // printArbs(market);
 })();
 
 function printArbs(market) {
